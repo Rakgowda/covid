@@ -1,11 +1,24 @@
 import React, { useState, useEffect } from 'react';
-
 import {useSelector,useDispatch} from "react-redux"
+
 import {Doughnut} from 'react-chartjs-2';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import fetchglobalCovid from "../redux/globalTracking/globalTrackingAction"
+
+
+
 
 export default function Linechart(params){
     
-    const covidStaTrackingstate = useSelector(state=>state.globalreducer)
+  const covidStaTrackingstate = useSelector(state=>state.globalreducer)
+  const covidSateTrackingDispatch = useDispatch();
+
+  
+  useEffect(() => {
+    covidSateTrackingDispatch(fetchglobalCovid());
+
+   
+}, [])
 
     const color = ["#dd2c00",
     "#ff5722",'#FF6384',
@@ -32,6 +45,12 @@ export default function Linechart(params){
 
 ]
 
+let increcon = {}
+let col = []
+
+
+const dyheight = window.innerWidth>1000?100:200
+
 const data = {
 	labels: [],
 	datasets: [{
@@ -41,35 +60,50 @@ const data = {
 		],
 		hoverBackgroundColor: [
 		]
-	}]
+  }]
 };
 
 
    
 
-      if(covidStaTrackingstate.data[params.statename]!= undefined)
+      if(covidStaTrackingstate.data[params.statename]!== undefined)
       {
         Object.keys(covidStaTrackingstate.data[params.statename].districtData).sort((a,b)=>covidStaTrackingstate.data[params.statename].districtData[b].confirmed - covidStaTrackingstate.data[params.statename].districtData[a].confirmed).map((keyname,index)=>{
             let dis = covidStaTrackingstate.data[params.statename].districtData[keyname];        
             if(dis.delta.confirmed>0)
             {
-                        keyname = keyname+"+"+dis.delta.confirmed
+              let key = keyname;
+              increcon[key] = dis.delta.confirmed
+              col = [...col,color[index]]
+              
             }
+            
                     data.labels = [...data.labels,keyname];
                     data.datasets[0].data = [...data.datasets[0].data,dis.confirmed]
                     data.datasets[0].backgroundColor=[...data.datasets[0].backgroundColor,color[index]]
                     data.datasets[0].hoverBackgroundColor=[...data.datasets[0].hoverBackgroundColor,color[index]]
 
         })
-        console.log(data.labels.length)
+        console.log(window.innerWidth)
       }
 
     return (
         <div>
         <h2 style={{textAlign:"center"}}>District Pie Chart</h2>
-        {covidStaTrackingstate.data[params.statename]?<Doughnut width={250} height={250} options={{maintainAspectRatio: false}} data={data} />:""}
+        <div style={{display:"flex",justifyContent:"center",margin:5}}>
+
+        {increcon?
+          Object.keys(increcon).map((k,i)=>{
+          return  <span style={{margin:3,fontSize:10,borderRadius:5,paddingLeft:4,paddingRight:4,color:"white",background:col[i]}}>{k}<ArrowUpwardIcon style={{margin:3,fontSize:10}}></ArrowUpwardIcon>{increcon[k]}</span>
+          }
+        ):""}
+        </div>
+        
+        {covidStaTrackingstate.data[params.statename]?<Doughnut height={dyheight} options={{responsive: false,
+          maintainAspectRatio: true}} options={{legend:{display:false}}} data={data} />:""}
         
       </div>
     );
   
 }
+

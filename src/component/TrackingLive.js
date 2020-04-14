@@ -12,26 +12,32 @@ const useStyles = makeStyles({
     width: 100,
     marginTop:50,
     color:"white",
-    textAlign:"center",
     margin: 10,
     height:100,
-    marginTop:-10
+    marginTop:-10,
+    boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
+    borderRadius:5,
+  
 
   },
-  cardContent:{
-    textAlign:"center",
-  },
+  
   title:{
-      fontSize:15,
+      fontSize:12,
       letterSpacing:"0.1em",
       fontWeight:"bold",
-      textAlign:"center"
+      textAlign:"center",
+      color:"black",
+      
+      
+    
   },
   subtitlt:{
-      fontSize:15,
+      fontSize:18,
       letterSpacing:"0.1em",
       fontWeight:"bold",
-      textAlign:"center"
+      textAlign:"center",
+      padding: 10
+     
 
   },
   arrow:{
@@ -39,6 +45,7 @@ const useStyles = makeStyles({
       position:"relative",
       display:"flex",
       justifyContent:"flex-end",
+     
   }
 
  
@@ -48,7 +55,7 @@ function Tracking(params) {
     const classes = useStyles();
 
     
-    const cardcolor =  {background:params.cardColor};
+    const cardcolor =  {background:params.cardColor,borderColor:params.cardColor};
 
     return (
       <Card className={classes.card} style={cardcolor} variant="outlined">
@@ -57,10 +64,14 @@ function Tracking(params) {
         <Typography style={{ fontSize:12}}>{params.increased}</Typography>
         </div>
         
-        <CardContent className={classes.cardContent}>
-         
-    <Typography className={classes.title}>{params.cardTitle}</Typography>
+        <CardContent style={{padding:0}}>
+    <div>
     <Typography className={classes.subtitlt}>{params.data}</Typography>
+     
+      </div>    
+    <div style={{background:"white"}}>
+    <Typography variant="body2" className={classes.title}>{params.cardTitle}</Typography>
+    </div>
 
         </CardContent>
       </Card>

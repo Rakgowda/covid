@@ -52,7 +52,18 @@ covidTrackingstate.data.data.statewise.filter((a)=>a.state == params.statename).
    
    
 
- )}):""}
+ )}):(
+
+   <React.Fragment>
+
+<Tracking key={"sc"} cardColor={"#FF8D4E"} cardTitle={"Total"} data={"..."} increased={0}> </Tracking>
+    <Tracking key={"sa"} cardColor={"#0779e4"} cardTitle={"Active"} data={"..."} increased={0}> </Tracking>
+
+<Tracking key={"sd"} cardColor={"#FE4F4F"} cardTitle={"Death"} data={"..."} increased={0}> </Tracking>
+<Tracking key={"sr"} cardColor={"#2DBF56"} cardTitle={"Recover"} data={"..."} increased={0}> </Tracking>
+   </React.Fragment>
+
+ )}
 
         
         

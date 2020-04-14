@@ -72,6 +72,8 @@ export default function ControlledExpansionPanels() {
       <tr style={{textAlign:"center"}}>
         <th>State</th>
         <th>Confirmed</th>
+        <th>Active</th>
+
         <th>Death</th>
         <th>Recovered</th>
       </tr>
@@ -87,10 +89,12 @@ covidTrackingstate.data.data.statewise.sort((a,b)=>b.confirmed-a.confirmed).map(
   let previconf = prevsta[0].confirmed;
   let prevideath = prevsta[0].deaths;
   let previrecoverd = prevsta[0].recovered;
+  let previactive = prevsta[0].active;
  
   let confirmed=state.confirmed-previconf;
   let deaths=state.deaths-prevideath;
   let recovered=state.recovered-previrecoverd;
+  let active = state.active-previactive
 
 
 
@@ -103,6 +107,9 @@ covidTrackingstate.data.data.statewise.sort((a,b)=>b.confirmed-a.confirmed).map(
 <span style={{position:"absolute",left:0}} className="mr-2"><ArrowRightIcon></ArrowRightIcon></span>{state.state}
 </td>
 <td>{state.confirmed} <sup><span className="text-warning" style={{ fontSize:9}}>{confirmed>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{confirmed>0?confirmed:""}</span></sup></td>
+<td>{state.active}</td>
+{/* <sup><span className="text-primary" style={{ fontSize:9}}>{active>0?(<ArrowUpwardIcon style={{ fontSize:9,transform:active>0?"":"rotate(180deg)"}}></ArrowUpwardIcon>):""}{active>0?active:""}</span></sup> */}
+
 <td>{state.deaths}<sup><span className="text-danger" style={{ fontSize:9}}>{deaths>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{deaths>0?deaths:""}</span></sup></td>
 <td>{state.recovered} <sup><span className="text-success" style={{ fontSize:9}}>{recovered>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{recovered>0?recovered:""}</span></sup></td>
 
@@ -152,6 +159,8 @@ covidTrackingstate.data.data.statewise.sort((a,b)=>b.confirmed-a.confirmed).map(
   :
   (<tr style={{textAlign:"center"}}>
   <td>...</td>
+  <td>...</td>
+
   <td>...</td>
   <td>...</td>
   <td>...</td>

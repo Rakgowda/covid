@@ -59,6 +59,7 @@ function StateList(){
     function deleteStorage() { 
        localStorage.setItem("State","")
        setStateFlag(false)
+setAge("")
      }
 return (
     <div>

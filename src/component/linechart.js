@@ -6,8 +6,11 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import fetchglobalCovid from "../redux/globalTracking/globalTrackingAction"
 
 import { Tween, Timeline } from 'react-gsap';
+import Cholopleth from "./choropleth"
 
-
+const getRandomInt = () => {
+  return parseInt(Math.random() * 100);
+};  
 
 export default function Linechart(params){
     
@@ -30,7 +33,7 @@ export default function Linechart(params){
     "#4cd3c2","#8db1ab",
     "#aeefec","#fb7b6b",
     "#018383","#bac7a7",
-    "#e4508f","#50d890",
+    "#e4508f",
     "#697c37","#effffb",
     "#005082","#e4508f",
     "#e7f0c3","#4f98ca",
@@ -40,7 +43,7 @@ export default function Linechart(params){
     "#6384b3","#bdf2d5",
     "#454d66","#560d0d",
     "#ffb677","#f77fee",
-    "#005082","#50d890",
+    "#005082"
 
 
 
@@ -49,7 +52,7 @@ export default function Linechart(params){
 let increcon = {}
 let col = []
 
-
+let getHeatMap = []
 const dyheight = window.innerWidth>1000?100:200
 
 const data = {
@@ -79,20 +82,23 @@ const data = {
               
             }
             
-                    data.labels = [...data.labels,keyname];
-                    data.datasets[0].data = [...data.datasets[0].data,dis.confirmed]
-                    data.datasets[0].backgroundColor=[...data.datasets[0].backgroundColor,color[index]]
-                    data.datasets[0].hoverBackgroundColor=[...data.datasets[0].hoverBackgroundColor,color[index]]
+            getHeatMap=[...getHeatMap,{id:keyname,District:keyname, value: dis.confirmed,color:color[index]}]
+
+            
+            
+                    // data.labels = [...data.labels,keyname];
+                    // data.datasets[0].data = [...data.datasets[0].data,dis.confirmed]
+                    // data.datasets[0].backgroundColor=[...data.datasets[0].backgroundColor,color[index]]
+                    // data.datasets[0].hoverBackgroundColor=[...data.datasets[0].hoverBackgroundColor,color[index]]
 
         })
-        console.log(window.innerWidth)
       }
 
     return (
         <div style={{marginBottom:10}}>
                <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={1.5}>
 
-        <h2 style={{textAlign:"center"}}>District Pie Chart</h2>
+        <h2 style={{textAlign:"center"}}>District Map</h2>
         </Tween>
         <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={1.5}>
 
@@ -108,10 +114,12 @@ const data = {
       
         
         {covidStaTrackingstate.data[params.statename]? 
-          <Tween ease="Back.easeIn"   to={{ opacity:1,y: '0px'}} duration={4}>
-          <Doughnut height={dyheight} options={{responsive: false,
-          maintainAspectRatio: true}} options={{legend:{display:false}}} data={data} />
-          </Tween>
+          ( <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={1.5}>
+<Cholopleth HeathMap = {getHeatMap} statename={params.statename.toLowerCase().replace(/ +/g, "")}/>
+
+          {/* <Doughnut height={dyheight} options={{responsive: false,
+          maintainAspectRatio: true}} options={{legend:{display:false}}} data={data} /> */}
+          </Tween>)
          :""}
          
       </div>

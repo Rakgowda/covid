@@ -78,6 +78,7 @@ function Header(params) {
 
 <StateList></StateList>
 
+
 <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={4}>
 
 <h4 style={{textAlign:"center"}}> India Live COVID19 Tracking</h4>
@@ -104,7 +105,6 @@ function Header(params) {
                  
 
                  <ControlledExpansionPanels />
-                
 
             </React.Fragment>
     )

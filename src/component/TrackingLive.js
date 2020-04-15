@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import Badge from '@material-ui/core/Badge';
+import {NumbFormate} from "./Formate"
+
 const useStyles = makeStyles({
   card: {
     width: 100,
@@ -61,16 +63,17 @@ function Tracking(params) {
       <Card className={classes.card} style={cardcolor} variant="outlined">
         <div className={classes.arrow}>
         <ArrowUpwardIcon style={{ fontSize:15,transform:params.increased>0?"":"rotate(-180deg)"}}></ArrowUpwardIcon>
-        <Typography style={{ fontSize:12}}>{params.increased}</Typography>
+        <Typography style={{ fontSize:12}}>{NumbFormate(params.increased)}</Typography>
+
         </div>
         
         <CardContent style={{padding:0}}>
     <div>
-    <Typography className={classes.subtitlt}>{params.data}</Typography>
+    <Typography className={classes.subtitlt}>{NumbFormate(params.data)}</Typography>
      
       </div>    
     <div style={{background:"white"}}>
-    <Typography variant="body2" className={classes.title}>{params.cardTitle}</Typography>
+    <Typography variant="body2" className={classes.title}>{NumbFormate(params.cardTitle)}</Typography>
     </div>
 
         </CardContent>

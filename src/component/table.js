@@ -13,7 +13,7 @@ import fetchCovidDeaths from "../redux/coviddeathtracking/covidDeathAction"
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import fetchCovid from "../redux/getCovidlivetracking/covidJsonAction"
-
+import {NumbFormate} from "./Formate"
 import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
@@ -64,6 +64,9 @@ export default function ControlledExpansionPanels() {
     setExpanded(isExpanded ? panel : false);
   };
 
+
+
+
   return (
     
     <div>
@@ -106,12 +109,12 @@ covidTrackingstate.data.data.statewise.sort((a,b)=>b.confirmed-a.confirmed).map(
 <td >
 <span style={{position:"absolute",left:0}} ><ArrowRightIcon></ArrowRightIcon></span>{state.state}
 </td>
-<td>{state.confirmed} <sup><span className="text-warning" style={{ fontSize:9}}>{confirmed>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{confirmed>0?confirmed:""}</span></sup></td>
-<td>{state.active}</td>
+<td>{NumbFormate(state.confirmed)} <sup><span className="text-warning" style={{ fontSize:9}}>{confirmed>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{confirmed>0?confirmed:""}</span></sup></td>
+<td>{NumbFormate(state.active)}</td>
 {/* <sup><span className="text-primary" style={{ fontSize:9}}>{active>0?(<ArrowUpwardIcon style={{ fontSize:9,transform:active>0?"":"rotate(180deg)"}}></ArrowUpwardIcon>):""}{active>0?active:""}</span></sup> */}
 
-<td>{state.deaths}<sup><span className="text-danger" style={{ fontSize:9}}>{deaths>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{deaths>0?deaths:""}</span></sup></td>
-<td>{state.recovered} <sup><span className="text-success" style={{ fontSize:9}}>{recovered>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{recovered>0?recovered:""}</span></sup></td>
+<td>{NumbFormate(state.deaths)}<sup><span className="text-danger" style={{ fontSize:9}}>{deaths>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{deaths>0?deaths:""}</span></sup></td>
+<td>{NumbFormate(state.recovered)} <sup><span className="text-success" style={{ fontSize:9}}>{recovered>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{recovered>0?recovered:""}</span></sup></td>
 
       </tr>
       <div id={state.state.split(" ")[0]} className="collapse" style={{alignItems:"center"}}>
@@ -131,7 +134,7 @@ covidTrackingstate.data.data.statewise.sort((a,b)=>b.confirmed-a.confirmed).map(
         Object.keys(covidStaTrackingstate.data[state.state].districtData).sort((a,b)=>covidStaTrackingstate.data[state.state].districtData[b].confirmed - covidStaTrackingstate.data[state.state].districtData[a].confirmed).map((keyname,index)=>{
           return (<tr style={{textAlign:"center"}} key={keyname}>
           <td>{keyname}</td>
-          <td>{covidStaTrackingstate.data[state.state].districtData[keyname].confirmed}<sup><span className="text-warning" style={{ fontSize:9}}>{covidStaTrackingstate.data[state.state].districtData[keyname].delta.confirmed>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{covidStaTrackingstate.data[state.state].districtData[keyname].delta.confirmed>0?covidStaTrackingstate.data[state.state].districtData[keyname].delta.confirmed:""}</span></sup></td>
+          <td>{NumbFormate(covidStaTrackingstate.data[state.state].districtData[keyname].confirmed)}<sup><span className="text-warning" style={{ fontSize:9}}>{covidStaTrackingstate.data[state.state].districtData[keyname].delta.confirmed>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{covidStaTrackingstate.data[state.state].districtData[keyname].delta.confirmed>0?covidStaTrackingstate.data[state.state].districtData[keyname].delta.confirmed:""}</span></sup></td>
          
           
                 </tr>)

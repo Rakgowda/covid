@@ -14,10 +14,11 @@ function App() {
    
   
     <Switch>
-   <Route exact path="/" component={Header}>
-  
-   </Route>
    
+
+   <Route exact path="/" component={Header}>
+   </Route>
+  
    </Switch>
     </Router>
   

@@ -4,6 +4,7 @@ import {useSelector,useDispatch} from "react-redux"
 import fetchCovidDeaths from "../redux/coviddeathtracking/covidDeathAction"
 import Tracking from './TrackingLive'
 import Linechart from "./linechart"
+import { Tween, Timeline } from 'react-gsap';
 
 
 function StateChart(params){
@@ -14,7 +15,9 @@ function StateChart(params){
   
     return (
         <React.Fragment>
-        <div style={{
+             <Tween from={{opacity:0,y: '-10px'}} to={{opacity:1,y: '0px'}} duration={3}>     
+             
+         <div style={{
             display:"flex",
             alignItems:"center",
             justifyContent:"center"   
@@ -40,12 +43,15 @@ covidTrackingstate.data.data.statewise.filter((a)=>a.state == params.statename).
  return (
     
     <React.Fragment>
+       
         <Tracking key={state.confirmed} cardColor={"#FF8D4E"} cardTitle={"Total"} data={state.confirmed} increased={confirmed}> </Tracking>
+       
         <Tracking key={state.active} cardColor={"#0779e4"} cardTitle={"Active"} data={state.active} increased={active}/>
     
     <Tracking key={state.deaths} cardColor={"#FE4F4F"} cardTitle={"Death"} data={state.deaths} increased={deaths}> </Tracking>
     <Tracking key={state.recovered} cardColor={"#2DBF56"} cardTitle={"Recover"} data={state.recovered} increased={recovered}> </Tracking>
-    
+   
+ 
     </React.Fragment>
 
    
@@ -69,7 +75,8 @@ covidTrackingstate.data.data.statewise.filter((a)=>a.state == params.statename).
         
 
         </div>
-        
+        </Tween>
+
      
         <Linechart statename = {params.statename} ></Linechart>
    </React.Fragment>

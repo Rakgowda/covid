@@ -5,6 +5,7 @@ import {Doughnut} from 'react-chartjs-2';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import fetchglobalCovid from "../redux/globalTracking/globalTrackingAction"
 
+import { Tween, Timeline } from 'react-gsap';
 
 
 
@@ -89,7 +90,12 @@ const data = {
 
     return (
         <div style={{marginBottom:10}}>
+               <Tween from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={3}>
+
         <h2 style={{textAlign:"center"}}>District Pie Chart</h2>
+        </Tween>
+        <Tween from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={3}>
+
          <div style={{display:"block",textAlign:"center"}}>
 
         {increcon?
@@ -98,10 +104,16 @@ const data = {
           }
         ):""}
         </div>
+        </Tween>
+      
         
-        {covidStaTrackingstate.data[params.statename]?<Doughnut height={dyheight} options={{responsive: false,
-          maintainAspectRatio: true}} options={{legend:{display:false}}} data={data} />:""}
-        
+        {covidStaTrackingstate.data[params.statename]? 
+          <Tween from={{opacity:0,y: '-20px' }} to={{ opacity:1,y: '0px'}} duration={4}>
+          <Doughnut height={dyheight} options={{responsive: false,
+          maintainAspectRatio: true}} options={{legend:{display:false}}} data={data} />
+          </Tween>
+         :""}
+         
       </div>
     );
   

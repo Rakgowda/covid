@@ -15,6 +15,8 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import fetchCovid from "../redux/getCovidlivetracking/covidJsonAction"
 import {NumbFormate} from "./Formate"
 import Divider from '@material-ui/core/Divider';
+import { Tween, Timeline } from 'react-gsap';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -70,6 +72,7 @@ export default function ControlledExpansionPanels() {
   return (
     
     <div>
+      <Tween from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={5}>
       <table className="table table-hover table-responsive-sm table-responsive-md" style={{fontSize:12}}>
     <thead>
       <tr style={{textAlign:"center"}}>
@@ -176,6 +179,7 @@ covidTrackingstate.data.data.statewise.sort((a,b)=>b.confirmed-a.confirmed).map(
      
     </tbody>
   </table>
+  </Tween>
 
       
      

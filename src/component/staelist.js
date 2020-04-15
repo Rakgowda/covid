@@ -8,6 +8,7 @@ import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import StateChart from "./stateLiveTracking"
+import { Tween, Timeline } from 'react-gsap';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -62,6 +63,8 @@ setAge("")
      }
 return (
     <div>
+<Tween from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={2}>
+
         {!StateFla?(
      <div style={{display:"flex",justifyContent:"center",marginBottom:10}}>
      
@@ -92,11 +95,13 @@ return (
    </div>
         ):
        <React.Fragment>
+               <Tween from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={3}>
             <h4 style={{textAlign:"center"}}> {localStorage.getItem("State")} State COVID19 Live Tracking<sup><HighlightOffIcon style={Style.Deleted} onClick={deleteStorage}></HighlightOffIcon></sup></h4>
             <br></br>
         <StateChart statename = {localStorage.getItem("State")}></StateChart>
-       
+        </Tween>
            </React.Fragment>}
+           </Tween>
     </div>
 )
 

@@ -63,7 +63,7 @@ setAge("")
      }
 return (
     <div>
-<Tween from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={2}>
+<Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={2.5}>
 
         {!StateFla?(
      <div style={{display:"flex",justifyContent:"center",marginBottom:10}}>
@@ -95,7 +95,7 @@ return (
    </div>
         ):
        <React.Fragment>
-               <Tween from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={3}>
+               <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={4}>
             <h4 style={{textAlign:"center"}}> {localStorage.getItem("State")} State COVID19 Live Tracking<sup><HighlightOffIcon style={Style.Deleted} onClick={deleteStorage}></HighlightOffIcon></sup></h4>
             <br></br>
         <StateChart statename = {localStorage.getItem("State")}></StateChart>

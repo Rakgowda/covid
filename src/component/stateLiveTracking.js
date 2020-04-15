@@ -15,7 +15,7 @@ function StateChart(params){
   
     return (
         <React.Fragment>
-             <Tween from={{opacity:0,y: '-10px'}} to={{opacity:1,y: '0px'}} duration={3}>     
+             <Tween ease="Back.easeIn"  from={{opacity:0,y: '-10px'}} to={{opacity:1,y: '0px'}} duration={3.5}>     
              
          <div style={{
             display:"flex",

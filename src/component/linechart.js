@@ -90,11 +90,11 @@ const data = {
 
     return (
         <div style={{marginBottom:10}}>
-               <Tween from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={3}>
+               <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={1.5}>
 
         <h2 style={{textAlign:"center"}}>District Pie Chart</h2>
         </Tween>
-        <Tween from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={3}>
+        <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={1.5}>
 
          <div style={{display:"block",textAlign:"center"}}>
 
@@ -108,7 +108,7 @@ const data = {
       
         
         {covidStaTrackingstate.data[params.statename]? 
-          <Tween from={{opacity:0,y: '-20px' }} to={{ opacity:1,y: '0px'}} duration={4}>
+          <Tween ease="Back.easeIn"   to={{ opacity:1,y: '0px'}} duration={4}>
           <Doughnut height={dyheight} options={{responsive: false,
           maintainAspectRatio: true}} options={{legend:{display:false}}} data={data} />
           </Tween>

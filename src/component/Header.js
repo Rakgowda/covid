@@ -60,7 +60,7 @@ function Header(params) {
     }, [])
     return(
             <React.Fragment>
-                 <Tween from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={1}>
+                 <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={1}>
                 <h1 className={classes.root}>{"INDIA COVID19"}<img className={classes.images} src={virus} alt="virus"></img>{" LIVE TRACKING"}</h1>
                 </Tween>
 
@@ -68,7 +68,7 @@ function Header(params) {
                  
 
                 
-                <Tween from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={2}>
+                <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={2}>
 
                  <Typography style={{fontSize:15,textAlign:"center",color:"#21bf73"}} gutterBottom>
           Last Update at {covidTrackingstate.data.data?Dateformate(covidTrackingstate.data.data.lastRefreshed):"..."}
@@ -78,13 +78,13 @@ function Header(params) {
 
 <StateList></StateList>
 
-<Tween from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={2}>
+<Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={4}>
 
 <h4 style={{textAlign:"center"}}> India Live COVID19 Tracking</h4>
 </Tween>
 
             <br></br>
-            <Tween from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={4}>
+            <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={4}>
                  <div className={classes.cardItems} >
 
                  <Tracking key="1" cardColor={"#FF8D4E"} cardTitle={"Total"} data={covidTrackingstate.data.data?covidTrackingstate.data.data.total.confirmed:"..."} increased={covidDeathTrackingstate.Deathdata.data && covidTrackingstate.data.data?(covidTrackingstate.data.data.total.confirmed - covidDeathTrackingstate.Deathdata.data.history[covidDeathTrackingstate.Deathdata.data.history.length-2].total.confirmed):"..."} />
@@ -95,7 +95,7 @@ function Header(params) {
                  
                  </Tween>
                  <br></br>
-<Tween from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={2}>
+<Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={4.5}>
 
                  <h3 style={{textAlign:"center"}}>State Wise</h3>
                  <p style={{textAlign:"end"}}> <span className="badge badge-info">Click on state for more info</span></p>

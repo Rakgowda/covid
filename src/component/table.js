@@ -67,7 +67,7 @@ export default function ControlledExpansionPanels() {
   return (
     
     <div>
-      <table className="table table-hover">
+      <table className="table table-hover table-responsive-sm table-responsive-md" style={{fontSize:12}}>
     <thead>
       <tr style={{textAlign:"center"}}>
         <th>State</th>
@@ -104,7 +104,7 @@ covidTrackingstate.data.data.statewise.sort((a,b)=>b.confirmed-a.confirmed).map(
       <React.Fragment key={state.state}>
 <tr style={{textAlign:"center"}} data-toggle="collapse" data-target={"#"+state.state.split(" ")[0]} key={state.state} >
 <td >
-<span style={{position:"absolute",left:0}} className="mr-2"><ArrowRightIcon></ArrowRightIcon></span>{state.state}
+<span style={{position:"absolute",left:0}} ><ArrowRightIcon></ArrowRightIcon></span>{state.state}
 </td>
 <td>{state.confirmed} <sup><span className="text-warning" style={{ fontSize:9}}>{confirmed>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{confirmed>0?confirmed:""}</span></sup></td>
 <td>{state.active}</td>

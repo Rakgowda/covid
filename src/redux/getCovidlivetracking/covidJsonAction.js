@@ -26,13 +26,13 @@ export const fetchError = errData => {
     payload: errData
   };
 };
-
+// https://api.rootnet.in/covid19-in/unofficial/covid19india.org/statewise
 const fetchCovid = () => {
   return dispatch => {
     dispatch(fetchRequest);
     axios
       .get(
-        "https://api.rootnet.in/covid19-in/unofficial/covid19india.org/statewise"
+        "https://api.covid19india.org/data.json"
       )
       .then(response => {
         const data = response.data;

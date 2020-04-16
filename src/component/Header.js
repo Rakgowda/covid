@@ -71,7 +71,7 @@ function Header(params) {
                 <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={2}>
 
                  <Typography style={{fontSize:15,textAlign:"center",color:"#21bf73"}} gutterBottom>
-          Last Update at {covidTrackingstate.data.data?Dateformate(covidTrackingstate.data.data.lastRefreshed):"..."}
+          Last Update at {covidTrackingstate.data.statewise?covidTrackingstate.data.statewise.lastupdatedtime:"..."}
         </Typography>
         </Tween>
         
@@ -88,10 +88,10 @@ function Header(params) {
             <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={4}>
                  <div className={classes.cardItems} >
 
-                 <Tracking key="1" cardColor={"#FF8D4E"} cardTitle={"Total"} data={covidTrackingstate.data.data?covidTrackingstate.data.data.total.confirmed:"..."} increased={covidDeathTrackingstate.Deathdata.data && covidTrackingstate.data.data?(covidTrackingstate.data.data.total.confirmed - covidDeathTrackingstate.Deathdata.data.history[covidDeathTrackingstate.Deathdata.data.history.length-2].total.confirmed):"..."} />
-                 <Tracking key="2" cardColor={"#0779e4"} cardTitle={"Active"} data={covidTrackingstate.data.data?covidTrackingstate.data.data.total.active:"..."} increased={covidDeathTrackingstate.Deathdata.data && covidTrackingstate.data.data?(covidTrackingstate.data.data.total.active-covidDeathTrackingstate.Deathdata.data.history[covidDeathTrackingstate.Deathdata.data.history.length-2].total.active):"..."}/>
-                 <Tracking key="2" cardColor={"#FE4F4F"} cardTitle={"Death"} data={covidTrackingstate.data.data?covidTrackingstate.data.data.total.deaths:"..."} increased={covidDeathTrackingstate.Deathdata.data && covidTrackingstate.data.data?(covidTrackingstate.data.data.total.deaths-covidDeathTrackingstate.Deathdata.data.history[covidDeathTrackingstate.Deathdata.data.history.length-2].total.deaths):"..."}/>
-                 <Tracking key="3" cardColor={"#2DBF56"} cardTitle="Recover" data={covidTrackingstate.data.data?covidTrackingstate.data.data.total.recovered:"..."} increased={covidDeathTrackingstate.Deathdata.data && covidTrackingstate.data.data?(covidTrackingstate.data.data.total.recovered-covidDeathTrackingstate.Deathdata.data.history[covidDeathTrackingstate.Deathdata.data.history.length-2].total.recovered):"..."} />
+                 <Tracking key="1" cardColor={"#FF8D4E"} cardTitle={"Total"} data={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].confirmed:"..."} increased={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].deltaconfirmed:"..."} />
+                 <Tracking key="2" cardColor={"#0779e4"} cardTitle={"Active"} data={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].active:"..."} increased={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].deltaconfirmed-covidTrackingstate.data.statewise[0].deltadeaths-covidTrackingstate.data.statewise[0].deltarecovered:"..."}/>
+                 <Tracking key="2" cardColor={"#FE4F4F"} cardTitle={"Death"} data={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].deaths:"..."} increased={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].deltadeaths:"..."}/>
+                 <Tracking key="3" cardColor={"#2DBF56"} cardTitle="Recover" data={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].recovered:"..."} increased={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].deltarecovered:"..."} />
                  </div>
                  
                  </Tween>

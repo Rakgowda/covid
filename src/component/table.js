@@ -86,21 +86,25 @@ export default function ControlledExpansionPanels() {
       
     </thead>
     <tbody>
-    {covidDeathTrackingstate.Deathdata.data && covidTrackingstate.data.data?
+    { covidTrackingstate.data.statewise?
 
-covidTrackingstate.data.data.statewise.sort((a,b)=>b.confirmed-a.confirmed).map((state,index)=>{
+    
+
+(
   
-  let len = covidDeathTrackingstate.Deathdata.data.history.length;
-  let prevsta = covidDeathTrackingstate.Deathdata.data.history[len-2].statewise.filter((a)=>a.state==state.state).map(b=>b)
-  let previconf = prevsta[0].confirmed;
-  let prevideath = prevsta[0].deaths;
-  let previrecoverd = prevsta[0].recovered;
-  let previactive = prevsta[0].active;
+  covidTrackingstate.data.statewise.filter((a)=> a.state !== "Total").map((state,index)=>{
+  
+  // let len = covidDeathTrackingstate.Deathdata.data.history.length;
+  // let prevsta = covidDeathTrackingstate.Deathdata.data.history[len-2].statewise.filter((a)=>a.state==state.state).map(b=>b)
+  // let previconf = prevsta[0].confirmed;
+  // let prevideath = prevsta[0].deaths;
+  // let previrecoverd = prevsta[0].recovered;
+  // let previactive = prevsta[0].active;
  
-  let confirmed=state.confirmed-previconf;
-  let deaths=state.deaths-prevideath;
-  let recovered=state.recovered-previrecoverd;
-  let active = state.active-previactive
+  // let confirmed=state.confirmed-previconf;
+  // let deaths=state.deaths-prevideath;
+  // let recovered=state.recovered-previrecoverd;
+  // let active = state.active-previactive
 
 
 
@@ -112,12 +116,12 @@ covidTrackingstate.data.data.statewise.sort((a,b)=>b.confirmed-a.confirmed).map(
 <td >
 <span style={{position:"absolute",left:0}} ><ArrowRightIcon></ArrowRightIcon></span>{state.state}
 </td>
-<td>{NumbFormate(state.confirmed)} <sup><span className="text-danger" style={{ fontSize:9}}>{confirmed>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{confirmed>0?confirmed:""}</span></sup></td>
+<td>{NumbFormate(state.confirmed)} <sup><span className="text-danger" style={{ fontSize:9}}>{state.deltaconfirmed>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{state.deltaconfirmed>0?state.deltaconfirmed:""}</span></sup></td>
 <td>{NumbFormate(state.active)}</td>
 {/* <sup><span className="text-primary" style={{ fontSize:9}}>{active>0?(<ArrowUpwardIcon style={{ fontSize:9,transform:active>0?"":"rotate(180deg)"}}></ArrowUpwardIcon>):""}{active>0?active:""}</span></sup> */}
 
-<td>{NumbFormate(state.deaths)}<sup><span className="text-danger" style={{ fontSize:9}}>{deaths>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{deaths>0?deaths:""}</span></sup></td>
-<td>{NumbFormate(state.recovered)} <sup><span className="text-success" style={{ fontSize:9}}>{recovered>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{recovered>0?recovered:""}</span></sup></td>
+<td>{NumbFormate(state.deaths)}<sup><span className="text-danger" style={{ fontSize:9}}>{state.deltadeaths>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{state.deltadeaths>0?state.deltadeaths:""}</span></sup></td>
+<td>{NumbFormate(state.recovered)} <sup><span className="text-success" style={{ fontSize:9}}>{state.deltarecovered>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{state.deltarecovered>0?state.deltarecovered:""}</span></sup></td>
 
       </tr>
       <div id={state.state.split(" ")[0]} className="collapse" style={{alignItems:"center"}}>
@@ -137,7 +141,7 @@ covidTrackingstate.data.data.statewise.sort((a,b)=>b.confirmed-a.confirmed).map(
         Object.keys(covidStaTrackingstate.data[state.state].districtData).sort((a,b)=>covidStaTrackingstate.data[state.state].districtData[b].confirmed - covidStaTrackingstate.data[state.state].districtData[a].confirmed).map((keyname,index)=>{
           return (<tr style={{textAlign:"center"}} key={keyname}>
           <td>{keyname}</td>
-          <td>{NumbFormate(covidStaTrackingstate.data[state.state].districtData[keyname].confirmed)}<sup><span className="text-danger" style={{ fontSize:9}}>{covidStaTrackingstate.data[state.state].districtData[keyname].delta.confirmed>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{covidStaTrackingstate.data[state.state].districtData[keyname].delta.confirmed>0?covidStaTrackingstate.data[state.state].districtData[keyname].delta.confirmed:""}</span></sup></td>
+          <td>{NumbFormate(covidStaTrackingstate.data[state.state].districtData[keyname].confirmed)}<sup><span className="text-warning" style={{ fontSize:9}}>{covidStaTrackingstate.data[state.state].districtData[keyname].delta.confirmed>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{covidStaTrackingstate.data[state.state].districtData[keyname].delta.confirmed>0?covidStaTrackingstate.data[state.state].districtData[keyname].delta.confirmed:""}</span></sup></td>
          
           
                 </tr>)
@@ -162,7 +166,7 @@ covidTrackingstate.data.data.statewise.sort((a,b)=>b.confirmed-a.confirmed).map(
     
     
     })
-  :
+)  :
   (<tr style={{textAlign:"center"}}>
   <td>...</td>
   <td>...</td>
@@ -186,20 +190,5 @@ covidTrackingstate.data.data.statewise.sort((a,b)=>b.confirmed-a.confirmed).map(
     </div>
   );
 
-  function tableData(state) {
-    return (covidStaTrackingstate.data.kerala?
-      (
-        Object.keys(covidStaTrackingstate.data["Kerala"].districtData).map((keyname,index)=>{
-          console.log(keyname) 
-        })
-      ):
-      <tr style={{textAlign:"center"}}>
-  <td>...</td>
-  <td>...</td>
-  <td>...</td>
-  <td>...</td>
-  
-        </tr>
-      )
-    }
+
 }

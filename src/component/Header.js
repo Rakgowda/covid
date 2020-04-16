@@ -71,7 +71,7 @@ function Header(params) {
                 <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={2}>
 
                  <Typography style={{fontSize:15,textAlign:"center",color:"#21bf73"}} gutterBottom>
-          Last Update at {covidTrackingstate.data.statewise?covidTrackingstate.data.statewise.lastupdatedtime:"..."}
+          Last Update at {covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].lastupdatedtime:"..."}
         </Typography>
         </Tween>
         

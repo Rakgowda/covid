@@ -141,7 +141,7 @@ export default function ControlledExpansionPanels() {
         Object.keys(covidStaTrackingstate.data[state.state].districtData).sort((a,b)=>covidStaTrackingstate.data[state.state].districtData[b].confirmed - covidStaTrackingstate.data[state.state].districtData[a].confirmed).map((keyname,index)=>{
           return (<tr style={{textAlign:"center"}} key={keyname}>
           <td>{keyname}</td>
-          <td>{NumbFormate(covidStaTrackingstate.data[state.state].districtData[keyname].confirmed)}<sup><span className="text-warning" style={{ fontSize:9}}>{covidStaTrackingstate.data[state.state].districtData[keyname].delta.confirmed>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{covidStaTrackingstate.data[state.state].districtData[keyname].delta.confirmed>0?covidStaTrackingstate.data[state.state].districtData[keyname].delta.confirmed:""}</span></sup></td>
+          <td>{NumbFormate(covidStaTrackingstate.data[state.state].districtData[keyname].confirmed)}<sup><span className="text-danger" style={{ fontSize:9}}>{covidStaTrackingstate.data[state.state].districtData[keyname].delta.confirmed>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{covidStaTrackingstate.data[state.state].districtData[keyname].delta.confirmed>0?covidStaTrackingstate.data[state.state].districtData[keyname].delta.confirmed:""}</span></sup></td>
          
           
                 </tr>)

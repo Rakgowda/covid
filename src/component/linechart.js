@@ -105,7 +105,7 @@ const data = {
          <div style={{display:"block",textAlign:"center"}}>
 
         {increcon?
-          Object.keys(increcon).sort((a,b)=>increcon[b] - increcon[a]).map((k,i)=>{
+          Object.keys(increcon).map((k,i)=>{
           return  <span className="badge badge-light" style={{color:"white",fontSize:10,margin:5,background:col[i]}}>{k}<ArrowUpwardIcon style={{margin:3,fontSize:10}}></ArrowUpwardIcon>{increcon[k]}</span>
           }
         ):""}

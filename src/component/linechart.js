@@ -105,7 +105,7 @@ const data = {
          <div style={{display:"block",textAlign:"center"}}>
 
         {increcon?
-          Object.keys(increcon).map((k,i)=>{
+          Object.keys(increcon).sort((a,b)=>increcon[b] - increcon[a]).map((k,i)=>{
           return  <span className="badge badge-light" style={{color:"white",fontSize:10,margin:5,background:col[i]}}>{k}<ArrowUpwardIcon style={{margin:3,fontSize:10}}></ArrowUpwardIcon>{increcon[k]}</span>
           }
         ):""}
@@ -114,12 +114,11 @@ const data = {
       
         
         {covidStaTrackingstate.data[params.statename]? 
-          ( <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={1.5}>
+          ( 
 <Cholopleth HeathMap = {getHeatMap} statename={params.statename.toLowerCase().replace(/ +/g, "")}/>
 
-          {/* <Doughnut height={dyheight} options={{responsive: false,
-          maintainAspectRatio: true}} options={{legend:{display:false}}} data={data} /> */}
-          </Tween>)
+          
+          )
          :""}
          
       </div>

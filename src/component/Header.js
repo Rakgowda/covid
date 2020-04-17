@@ -9,9 +9,9 @@ import fetchCovidRecovered from "../redux/covidrecovered/covidRecoveredAction"
 import Typography from '@material-ui/core/Typography';
 import GlobalTracking from "./globalTracking"
 import ControlledExpansionPanels from "./table.js"
-import Divider from '@material-ui/core/Divider';
 import StateList from "./staelist"
 import { Tween, Timeline } from 'react-gsap';
+import moment from 'moment'
 const useStyles = makeStyles((theme) => ({
   root: {
     ...theme.typography.button,
@@ -70,9 +70,13 @@ function Header(params) {
                 
                 <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={2}>
 
-                 <Typography style={{fontSize:15,textAlign:"center",color:"#21bf73"}} gutterBottom>
-          Last Update at {covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].lastupdatedtime:"..."}
-        </Typography>
+                 <p style={{fontSize:15,textAlign:"center",color:"#21bf73"}} className="font-weight-bold">
+          Last Update at {covidTrackingstate.data.statewise?
+          moment(covidTrackingstate.data.statewise[0].lastupdatedtime.split(" ")[0], 'DD/MM/YYYY').format("Do MMM")+
+          ", "+covidTrackingstate.data.statewise[0].lastupdatedtime.split(" ")[1]+"IST ["+moment(covidTrackingstate.data.statewise[0].lastupdatedtime.split(" ")[1], 'hh:mm:ss').fromNow()+"]"
+          
+          :"..."}
+        </p>
         </Tween>
         
 

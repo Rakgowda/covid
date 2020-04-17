@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 import { scaleQuantile } from 'd3-scale';
 import ReactTooltip from 'react-tooltip';
+import { Tween, Timeline } from 'react-gsap';
 
 
 
@@ -148,9 +149,10 @@ function Cholopleth(params) {
   const INDIA_TOPO_JSON = require('../maps/'+params.statename+".json");
   const [tooltipContent, setTooltipContent] = useState('');
   const [data, setData] = useState(params.HeathMap);
+  let sca = window.innerWidth>700?200:600;
   
 const PROJECTION_CONFIG = {
-  scale: 350,
+  scale: sca,
   center: Statecenter[params.statename]?[Statecenter[params.statename].lat,Statecenter[params.statename].lon]:[] // always in [East Latitude, North Longitude]
 };
 
@@ -170,14 +172,15 @@ const PROJECTION_CONFIG = {
   };
 
   return (
-    <div className="full-width-height container">
+    <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={1.5}>
+    <div className="full-width-height container" >
       
       <ReactTooltip>{tooltipContent}</ReactTooltip>
         <ComposableMap
           projectionConfig={PROJECTION_CONFIG}
           projection="geoMercator"
-          width={100}
-          height={50}
+          width={window.innerWidth>700?50:100}
+          height={window.innerWidth>700?30:80}
           data-tip=""
         >
           <Geographies geography={INDIA_TOPO_JSON}>
@@ -205,6 +208,7 @@ const PROJECTION_CONFIG = {
        
     
     </div>
+    </Tween>
   );
 }
 

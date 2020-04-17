@@ -77,7 +77,8 @@ const data = {
             if(dis.delta.confirmed>0)
             {
               let key = keyname;
-              increcon[key] = dis.delta.confirmed
+              increcon[key] = {confirmed:dis.delta.confirmed,index:col.length}
+              
               col = [...col,color[index]]
               
             }
@@ -105,8 +106,8 @@ const data = {
          <div style={{display:"block",textAlign:"center"}}>
 
         {increcon?
-          Object.keys(increcon).map((k,i)=>{
-          return  <span className="badge badge-light" style={{color:"white",fontSize:10,margin:5,background:col[i]}}>{k}<ArrowUpwardIcon style={{margin:3,fontSize:10}}></ArrowUpwardIcon>{increcon[k]}</span>
+          Object.keys(increcon).sort((a,b)=>increcon[b].confirmed - increcon[a].confirmed).map((k,i)=>{
+          return  <span className="badge badge-light" style={{color:"white",fontSize:10,margin:5,background:col[increcon[k].index]}}>{k}<ArrowUpwardIcon style={{margin:3,fontSize:10}}></ArrowUpwardIcon>{increcon[k].confirmed}</span>
           }
         ):""}
         </div>

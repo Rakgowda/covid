@@ -73,7 +73,7 @@ function Header(params) {
                  <p style={{textAlign:"center",color:"#21bf73"}} className="font-weight-normal">
           Last Update at {covidTrackingstate.data.statewise?
           moment(covidTrackingstate.data.statewise[0].lastupdatedtime.split(" ")[0], 'DD/MM/YYYY').format("Do MMM")+
-          ", "+covidTrackingstate.data.statewise[0].lastupdatedtime.split(" ")[1]+"IST ["+moment(covidTrackingstate.data.statewise[0].lastupdatedtime.split(" ")[1], 'hh:mm:ss').fromNow()+"]"
+          ", "+covidTrackingstate.data.statewise[0].lastupdatedtime.split(" ")[1]+" IST ["+moment(covidTrackingstate.data.statewise[0].lastupdatedtime.split(" ")[1], 'hh:mm:ss').fromNow()+"]"
           
           :"..."}
         </p>

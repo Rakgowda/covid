@@ -70,7 +70,7 @@ function Header(params) {
                 
                 <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={2}>
 
-                 <p style={{fontSize:15,textAlign:"center",color:"#21bf73"}} className="font-weight-bold">
+                 <p style={{textAlign:"center",color:"#21bf73"}} className="font-weight-normal">
           Last Update at {covidTrackingstate.data.statewise?
           moment(covidTrackingstate.data.statewise[0].lastupdatedtime.split(" ")[0], 'DD/MM/YYYY').format("Do MMM")+
           ", "+covidTrackingstate.data.statewise[0].lastupdatedtime.split(" ")[1]+"IST ["+moment(covidTrackingstate.data.statewise[0].lastupdatedtime.split(" ")[1], 'hh:mm:ss').fromNow()+"]"
@@ -85,7 +85,7 @@ function Header(params) {
 
 <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={4}>
 
-<h4 style={{textAlign:"center"}}> India Live COVID19 Tracking</h4>
+<h3 style={{textAlign:"center"}}> India Live COVID19 Tracking</h3>
 </Tween>
 
             <br></br>

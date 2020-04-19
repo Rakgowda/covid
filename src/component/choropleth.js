@@ -3,6 +3,7 @@ import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
 import { scaleQuantile } from 'd3-scale';
 import ReactTooltip from 'react-tooltip';
 import { Tween, Timeline } from 'react-gsap';
+import {useSelector,useDispatch} from "react-redux"
 
 
 
@@ -145,11 +146,12 @@ const Statecenter = {
 // will generate random heatmap data on every call
 
 function Cholopleth(params) {
-  // const OtherComponent = React.lazy(() => import('./OtherComponent'));
+  const covidStaTrackingstate = useSelector(state=>state.globalreducer)
   const INDIA_TOPO_JSON = require('../maps/'+params.statename+".json");
   const [tooltipContent, setTooltipContent] = useState('');
   const [data, setData] = useState(params.HeathMap);
   let sca = window.innerWidth>700?200:600;
+  const [District,setDistrict] = useState([])
   
 const PROJECTION_CONFIG = {
   scale: sca,
@@ -159,11 +161,15 @@ const PROJECTION_CONFIG = {
 
   const onMouseEnter = (geo, current = { value: 'NA' }) => {
     return () => {
+      let IncresedDI = covidStaTrackingstate.data[params.statename]!== undefined?covidStaTrackingstate.data[params.statename].districtData[geo.properties.district].delta.confirmed:0;
+      setDistrict([])
+      setDistrict([geo.properties.district,current.value!=="NA"?current.value:0,IncresedDI])
       setTooltipContent(`${geo.properties.district}: ${current.value!=="NA"?current.value:0}`);
     };
   };
 
   const onMouseLeave = () => {
+    setDistrict([]);
     setTooltipContent('');
   };
 
@@ -173,8 +179,32 @@ const PROJECTION_CONFIG = {
 
   return (
     <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={1.5}>
+   
     <div className="full-width-height container" >
+       
+    {District.length>0?(
+      (<div style={Style.DIstrictInfo}>
+        <h3>{District[0]}</h3>
+        
+      <table className="table table-striped table-borderless table-sm table-responsive" style={{fontSize:window.innerWidth>700?15:10}}>
+    <thead>
+      <tr>
+        <th>Confirmed</th>
+        <th>Increased</th>
       
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      <td>{District[1]}</td>
+        <td>{District[2]}</td>
+      </tr>
+      
+    </tbody>
+  </table>
+      </div>
+        )
+    ):""}
       <ReactTooltip>{tooltipContent}</ReactTooltip>
         <ComposableMap
           projectionConfig={PROJECTION_CONFIG}
@@ -190,7 +220,7 @@ const PROJECTION_CONFIG = {
                 //console.log(geo.id);
                 const current = data.find(s => s.id === geo.properties.district);
                 let color = current?current.color:"#50d890"
-                console.log(color)
+                
                 return (
                   <Geography
                     key={geo.rsmKey}
@@ -198,6 +228,7 @@ const PROJECTION_CONFIG = {
                     fill={color}
                     style={geographyStyle}
                     onMouseEnter={onMouseEnter(geo,current )}
+                    onMouseLeave={onMouseLeave}
                     
                   />
                 );
@@ -210,6 +241,14 @@ const PROJECTION_CONFIG = {
     </div>
     </Tween>
   );
+}
+
+const Style = {
+  DIstrictInfo:{
+color:"red",
+position:"absolute",
+textAlign:"center"
+  },
 }
 
 

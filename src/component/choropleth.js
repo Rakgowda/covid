@@ -161,6 +161,7 @@ const PROJECTION_CONFIG = {
 
   const onMouseEnter = (geo, current = { value: 'NA' }) => {
     return () => {
+setDistrict([])
       let district = geo.properties.district;
       console.log(district);
 

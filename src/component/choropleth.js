@@ -161,9 +161,12 @@ const PROJECTION_CONFIG = {
 
   const onMouseEnter = (geo, current = { value: 'NA' }) => {
     return () => {
-      let IncresedDI = covidStaTrackingstate.data[params.statename]!== undefined?covidStaTrackingstate.data[params.statename].districtData[geo.properties.district].delta.confirmed:0;
-      setDistrict([])
-      setDistrict([geo.properties.district,current.value!=="NA"?current.value:0,IncresedDI])
+      let district = geo.properties.district;
+      console.log(district);
+
+      let isthere = data.find(a=>a.id==district);
+      {isthere===undefined?setDistrict([district,0,0]):setDistrict([district,current.value!=="NA"?current.value:0,covidStaTrackingstate.data[params.stateRealName].districtData[district].delta.confirmed])}
+
       setTooltipContent(`${geo.properties.district}: ${current.value!=="NA"?current.value:0}`);
     };
   };

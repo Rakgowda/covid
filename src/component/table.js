@@ -73,7 +73,7 @@ export default function ControlledExpansionPanels() {
     
     <div>
       <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={5}>
-      <table className="table table-hover table-responsive-sm table-responsive-md" style={{fontSize:12}}>
+      <table className="table table-striped table-responsive-sm table-responsive-md" style={{fontSize:12}}>
     <thead>
       <tr style={{textAlign:"center"}}>
         <th>State</th>

@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import Badge from '@material-ui/core/Badge';
 import {NumbFormate} from "./Formate"
-
+import CountUp from 'react-countup';
 const useStyles = makeStyles({
   card: {
     width: 100,
@@ -63,13 +63,13 @@ function Tracking(params) {
       <Card className={classes.card} style={cardcolor} variant="outlined">
         <div className={classes.arrow}>
         <ArrowUpwardIcon style={{ fontSize:15,transform:params.increased>0?"":"rotate(-180deg)"}}></ArrowUpwardIcon>
-        <Typography style={{ fontSize:12}}>{NumbFormate(params.increased)}</Typography>
+        <Typography style={{ fontSize:12}}>{params.increased==="..."?"...":<CountUp delay={2} separator="," duration={4} end={params.increased}></CountUp>}</Typography>
 
         </div>
         
         <CardContent style={{padding:0}}>
     <div>
-    <Typography className={classes.subtitlt}>{NumbFormate(params.data)}</Typography>
+    <Typography className={classes.subtitlt}>{params.data==="..."?params.data:<CountUp delay={2} separator="," duration={2} end={params.data}></CountUp>}</Typography>
      
       </div>    
     <div style={{background:"white"}}>

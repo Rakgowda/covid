@@ -116,7 +116,7 @@ const data = {
         
         {covidStaTrackingstate.data[params.statename]? 
           ( 
-<Cholopleth HeathMap = {getHeatMap} statename={params.statename.toLowerCase().replace(/ +/g, "")}/>
+<Cholopleth HeathMap = {getHeatMap} statename={params.statename.toLowerCase().replace(/ +/g, "")} stateRealName={params.stateRealName}/>
 
           
           )

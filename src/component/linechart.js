@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {useSelector,useDispatch} from "react-redux"
 
-import {Doughnut} from 'react-chartjs-2';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import fetchglobalCovid from "../redux/globalTracking/globalTrackingAction"
 
@@ -116,7 +115,7 @@ const data = {
         
         {covidStaTrackingstate.data[params.statename]? 
           ( 
-<Cholopleth HeathMap = {getHeatMap} statename={params.statename.toLowerCase().replace(/ +/g, "")} stateRealName={params.stateRealName}/>
+<Cholopleth HeathMap = {getHeatMap} statename={params.statename.toLowerCase().replace(/ +/g, "")} stateRealName={params.statename}/>
 
           
           )

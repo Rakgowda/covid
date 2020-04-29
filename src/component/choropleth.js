@@ -165,7 +165,7 @@ const PROJECTION_CONFIG = {
       console.log(district);
 
       let isthere = data.find(a=>a.id==district);
-      {isthere===undefined?setDistrict([district,0,0]):setDistrict([district,current.value!=="NA"?current.value:0,covidStaTrackingstate.data[params.stateRealName].districtData[district].delta.confirmed])}
+      {isthere===undefined?setDistrict([district,0,0]):setDistrict([district,current.value!=="NA"?current.value:0,covidStaTrackingstate.data[params.stateRealName].districtData[district]])}
 
       setTooltipContent(`${geo.properties.district}: ${current.value!=="NA"?current.value:0}`);
     };
@@ -187,25 +187,46 @@ const PROJECTION_CONFIG = {
        
     {District.length>0?(
       (<div style={Style.DIstrictInfo}>
-        <h3>{District[0]}</h3>
-        
-      <table className="table table-striped table-borderless table-sm table-responsive" style={{fontSize:window.innerWidth>700?15:10}}>
+        <h4>{District[0]}</h4>
+        <table className="table table-striped table-borderless table-sm table-responsive" style={{fontSize:window.innerWidth>700?15:10}}>
     <thead>
       <tr>
         <th>Confirmed</th>
-        <th>Increased</th>
+        <th>Active</th>
+        <th>Deaths</th>
+        <th>Recovered</th>
+
       
       </tr>
     </thead>
+        {District[1]==0?(
+          <tbody>
+          <tr style={{backgroundColor:"#75daad"}}>
+          <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+    
+          </tr>
+          
+        </tbody>
+        ):(
+          
     <tbody>
       <tr>
       <td>{District[1]}</td>
-        <td>{District[2]}</td>
+        <td>{District[2].active}</td>
+        <td>{District[2].deceased}</td>
+        <td>{District[2].recovered}</td>
+
       </tr>
       
     </tbody>
-  </table>
-      </div>
+  
+     
+        )}
+        </table>
+       </div>
         )
     ):""}
       <ReactTooltip>{tooltipContent}</ReactTooltip>

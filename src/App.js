@@ -5,6 +5,7 @@ import { Switch, Route,Link,NavLink,BrowserRouter as Router} from 'react-router-
 import { Provider } from 'react-redux'
 import Header from './component/Header'
 import store from './redux/store';
+import SateInfo from "./component/stateinfochart"
 
 function App() {
   return (
@@ -17,6 +18,10 @@ function App() {
    
 
    <Route exact path="/" component={Header}>
+   </Route>
+
+
+   <Route exact path="/info/:State" component={SateInfo}>
    </Route>
   
    </Switch>

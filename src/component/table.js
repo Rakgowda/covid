@@ -131,6 +131,10 @@ export default function ControlledExpansionPanels() {
     <tr style={{textAlign:"center"}}>
         <th>District</th>
         <th>Confirmed</th>
+        <th>Active</th>
+        <th>Death</th>
+        <th>Recovered</th>
+
         
       </tr>
     </thead>
@@ -142,6 +146,9 @@ export default function ControlledExpansionPanels() {
           return (<tr style={{textAlign:"center"}} key={keyname}>
           <td>{keyname}</td>
           <td>{NumbFormate(covidStaTrackingstate.data[state.state].districtData[keyname].confirmed)}<sup><span className="text-danger" style={{ fontSize:9}}>{covidStaTrackingstate.data[state.state].districtData[keyname].delta.confirmed>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{covidStaTrackingstate.data[state.state].districtData[keyname].delta.confirmed>0?covidStaTrackingstate.data[state.state].districtData[keyname].delta.confirmed:""}</span></sup></td>
+          <td>{NumbFormate(covidStaTrackingstate.data[state.state].districtData[keyname].active)}</td>
+          <td>{NumbFormate(covidStaTrackingstate.data[state.state].districtData[keyname].deceased)}<sup><span className="text-danger" style={{ fontSize:9}}>{covidStaTrackingstate.data[state.state].districtData[keyname].delta.deceased>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{covidStaTrackingstate.data[state.state].districtData[keyname].delta.deceased>0?covidStaTrackingstate.data[state.state].districtData[keyname].delta.deceased:""}</span></sup></td>
+          <td>{NumbFormate(covidStaTrackingstate.data[state.state].districtData[keyname].recovered)}<sup><span className="text-success" style={{ fontSize:9}}>{covidStaTrackingstate.data[state.state].districtData[keyname].delta.recovered>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{covidStaTrackingstate.data[state.state].districtData[keyname].delta.recovered>0?covidStaTrackingstate.data[state.state].districtData[keyname].delta.recovered:""}</span></sup></td>
          
           
                 </tr>)

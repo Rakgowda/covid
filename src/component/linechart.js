@@ -6,6 +6,7 @@ import fetchglobalCovid from "../redux/globalTracking/globalTrackingAction"
 
 import { Tween, Timeline } from 'react-gsap';
 import Cholopleth from "./choropleth"
+import { Switch, Route,Link,NavLink,BrowserRouter as Router} from 'react-router-dom'
 
 const getRandomInt = () => {
   return parseInt(Math.random() * 100);
@@ -98,7 +99,11 @@ const data = {
         <div style={{marginBottom:10}}>
                <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={1.5}>
 
-        <h2 style={{textAlign:"center"}}>District Map</h2>
+               <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+               <h2 style={{textAlign:"center"}} style={{margin: 10}}>District Map</h2>
+               {/* <Link to={"/info/"+params.statename} style={{margin: 10}} >click</Link> */}
+               </div>
+        
         </Tween>
         <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={1.5}>
 

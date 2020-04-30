@@ -5,6 +5,7 @@ import ReactTooltip from 'react-tooltip';
 import { Tween, Timeline } from 'react-gsap';
 import {useSelector,useDispatch} from "react-redux"
 
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 
 
 
@@ -236,7 +237,9 @@ const PROJECTION_CONFIG = {
       <tr>
       <th>Confirmed</th>
 
-      <td>{District[1]}</td>
+      <td>{District[1]}
+      <sup><span className="text-danger" style={{ fontSize:9}}>{District[2].delta.confirmed>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{District[2].delta.confirmed>0?District[2].delta.confirmed:""}</span></sup>
+      </td>
         
 
       </tr>
@@ -250,7 +253,10 @@ const PROJECTION_CONFIG = {
       <tr>
       <th>Deaths</th>
 
-        <td>{District[2].deceased}</td>
+        <td>{District[2].deceased}
+      <sup><span className="text-danger" style={{ fontSize:9}}>{District[2].delta.deceased>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{District[2].delta.deceased>0?District[2].delta.deceased:""}</span></sup>
+        
+        </td>
        
 
       </tr>
@@ -259,7 +265,10 @@ const PROJECTION_CONFIG = {
 
       <th>Recovered</th>
         
-        <td>{District[2].recovered}</td>
+        <td>{District[2].recovered}
+      <sup><span className="text-danger" style={{ fontSize:9}}>{District[2].delta.recovered>0?(<ArrowUpwardIcon style={{ fontSize:9}}></ArrowUpwardIcon>):""}{District[2].delta.recovered>0?District[2].delta.recovered:""}</span></sup>
+        
+        </td>
 
       </tr>
       

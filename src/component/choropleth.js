@@ -189,34 +189,76 @@ const PROJECTION_CONFIG = {
       (<div style={Style.DIstrictInfo}>
         <h4>{District[0]}</h4>
         <table className="table table-striped table-borderless table-sm table-responsive" style={{fontSize:window.innerWidth>700?15:10}}>
-    <thead>
-      <tr>
-        <th>Confirmed</th>
-        <th>Active</th>
-        <th>Deaths</th>
-        <th>Recovered</th>
-
-      
-      </tr>
-    </thead>
+    
         {District[1]==0?(
           <tbody>
-          <tr style={{backgroundColor:"#75daad"}}>
-          <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
+          <tr>
+         
+      <th>Confirmed</th>
+
+      <td>0</td>
+        
+
+      </tr>
+      <tr>
+         
+      <th>Active</th>
+
+      <td>0</td>
+        
+
+      </tr>
+      <tr>
+         
+      <th>Deaths</th>
+
+      <td>0</td>
+        
+
+      </tr>
+      <tr>
+         
+      <th>Recovered</th>
+
+      <td>0</td>
+        
+
+      </tr>
+         
     
-          </tr>
+         
+          
           
         </tbody>
         ):(
           
     <tbody>
       <tr>
+      <th>Confirmed</th>
+
       <td>{District[1]}</td>
+        
+
+      </tr>
+      <tr>
+      <th>Active</th>
+
         <td>{District[2].active}</td>
+        
+
+      </tr>
+      <tr>
+      <th>Deaths</th>
+
         <td>{District[2].deceased}</td>
+       
+
+      </tr>
+      <tr>
+      
+
+      <th>Recovered</th>
+        
         <td>{District[2].recovered}</td>
 
       </tr>

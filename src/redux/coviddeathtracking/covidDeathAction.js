@@ -36,6 +36,7 @@ const fetchCovidDeaths = () => {
       )
       .then(response => {
         const data = response.data;
+        console.log(data);
         
         dispatch(fetchSucess(data));
       })

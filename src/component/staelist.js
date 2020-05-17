@@ -9,7 +9,6 @@ import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import StateChart from "./stateLiveTracking"
 import { Tween, Timeline } from 'react-gsap';
-
 const useStyles = makeStyles((theme) => ({
 
   formControl: {
@@ -98,6 +97,7 @@ return (
                <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={4}>
             <h3 style={{textAlign:"center"}}> {localStorage.getItem("State")} State COVID19 Live Tracking<sup><HighlightOffIcon style={Style.Deleted} onClick={deleteStorage}></HighlightOffIcon></sup></h3>
             <br></br>
+            
         <StateChart statename = {localStorage.getItem("State")}></StateChart>
         </Tween>
            </React.Fragment>}

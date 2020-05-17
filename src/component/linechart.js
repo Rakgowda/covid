@@ -7,12 +7,19 @@ import fetchglobalCovid from "../redux/globalTracking/globalTrackingAction"
 import { Tween, Timeline } from 'react-gsap';
 import Cholopleth from "./choropleth"
 import { Switch, Route,Link,NavLink,BrowserRouter as Router} from 'react-router-dom'
+import Stateinfochart from "./stateinfochart"
+import fetchCovidDeaths from "../redux/coviddeathtracking/covidDeathAction"
 
 const getRandomInt = () => {
   return parseInt(Math.random() * 100);
 };  
 
 export default function Linechart(params){
+  const covidDeathTrackingstate = useSelector(state=>state.CovidDeathreducer);
+    const covidDeathTrackingDispatch = useDispatch();
+    useEffect(()=>{
+      covidDeathTrackingDispatch(fetchCovidDeaths());
+    },[])
     
   const covidStaTrackingstate = useSelector(state=>state.globalreducer)
   const covidSateTrackingDispatch = useDispatch();
@@ -96,7 +103,17 @@ const data = {
       }
 
     return (
+  
         <div style={{marginBottom:10}}>
+              {covidDeathTrackingstate.Deathdata.data !==undefined?(
+               <React.Fragment>
+                  <h4 className="text-center" style={{color:"#758184"}}>Last 5 days chart</h4>
+                  <Stateinfochart stateRealName={params.statename} barchart={covidDeathTrackingstate}></Stateinfochart>
+                 
+               </React.Fragment>
+              ):""}
+              
+               
                <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={1.5}>
 
                <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
@@ -116,6 +133,8 @@ const data = {
         ):""}
         </div>
         </Tween>
+
+   
       
         
         {covidStaTrackingstate.data[params.statename]? 

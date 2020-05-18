@@ -25,7 +25,7 @@ export default function Stateinfochart(params){
 
   const classes = useStyles();
   const [caseType, setCaseType] = React.useState('confirmed');
-  const [open, setOpen] = React.useState(false);
+ 
   const colorData={confirmed:"#FF8D4E",active:"#0779e4",deaths:"#FE4F4F",recovered:"#2DBF56"}
  
   const handleChange = (event) => {
@@ -35,13 +35,7 @@ export default function Stateinfochart(params){
     setCaseType(event.target.value);
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  
     
     
     const covidTrackingstate = useSelector(state=>state.reducer)
@@ -115,6 +109,8 @@ export default function Stateinfochart(params){
   
   txt.enter().append("text")
   .attr("x",(d,i)=>x(i)+(w/2))
+  .attr("y",graphHeight)
+  .transition(t)
   .attr("y",d=>y(d)-10)
   .attr("font-size", "11px")
   .style("fill", colorData[caseType])
@@ -189,15 +185,13 @@ export default function Stateinfochart(params){
         <Select
           labelId="demo-controlled-open-select-label"
           id="demo-controlled-open-select"
-          open={open}
-          onClose={handleClose}
-          onOpen={handleOpen}
+         
           value={caseType}
           onChange={handleChange}
           
         >
           
-          <MenuItem value={"confirmed"}>Confirm</MenuItem>
+          <MenuItem value={"confirmed"}>Confirme</MenuItem>
           <MenuItem value={"active"}>Active</MenuItem>
           <MenuItem value={"deaths"}>Death</MenuItem>
           <MenuItem value={"recovered"}>Recover</MenuItem>

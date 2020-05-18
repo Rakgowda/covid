@@ -105,9 +105,11 @@ const data = {
         <div style={{marginBottom:10}}>
               {covidDeathTrackingstate.Deathdata.data !==undefined?(
                <React.Fragment>
-                 
+                 <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={1.5}>
+
                   <h4 className="text-center" style={{color:"#758184"}}>Last 5 days chart</h4>
                   <Stateinfochart stateRealName={params.statename} barchart={covidDeathTrackingstate}></Stateinfochart>
+        </Tween>
                  
                </React.Fragment>
               ):""}

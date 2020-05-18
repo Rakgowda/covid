@@ -206,7 +206,7 @@ export default function Stateinfochart(params){
       <svg style={{marginLeft:"50%",transform:"translateX(-50%)"}}
         ref={svgRef}
         width="300"
-        height="300"
+        height="250"
         id="#barchart"
         
         preserveAspectRatio="xMidYMid meet"

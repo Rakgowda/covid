@@ -29,7 +29,7 @@ export default function Stateinfochart(params){
   const colorData={confirmed:"#FF8D4E",active:"#0779e4",deaths:"#FE4F4F",recovered:"#2DBF56"}
  
   const handleChange = (event) => {
-    d3.selectAll("g").remove();
+    d3.select(svgRef.current).remove();
     setCaseType(event.target.value);
   };
 

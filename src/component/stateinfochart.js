@@ -197,7 +197,7 @@ export default function Stateinfochart(params){
           
         >
           
-          <MenuItem value={"confirmed"}>Confirme</MenuItem>
+          <MenuItem value={"confirmed"}>Confirm</MenuItem>
           <MenuItem value={"active"}>Active</MenuItem>
           <MenuItem value={"deaths"}>Death</MenuItem>
           <MenuItem value={"recovered"}>Recover</MenuItem>

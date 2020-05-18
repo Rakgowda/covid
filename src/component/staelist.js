@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import StateChart from "./stateLiveTracking"
 import { Tween, Timeline } from 'react-gsap';
+import Linechart from "./linechart"
+
 const useStyles = makeStyles((theme) => ({
 
   formControl: {
@@ -28,7 +30,7 @@ function StateList(){
     const classes = useStyles();
     const [age, setAge] = React.useState('');
     
-    const [open, setOpen] = React.useState(false);
+  
   
     useEffect(() => {
 
@@ -48,13 +50,7 @@ function StateList(){
       setStateFlag(true)
     };
   
-    const handleClose = () => {
-      setOpen(false);
-    };
-  
-    const handleOpen = () => {
-      setOpen(true);
-    };
+    
     function deleteStorage() { 
        localStorage.setItem("State","")
        setStateFlag(false)
@@ -72,9 +68,7 @@ return (
        <Select
          labelId="demo-controlled-open-select-label"
          id="demo-controlled-open-select"
-         open={open}
-         onClose={handleClose}
-         onOpen={handleOpen}
+        
          value={age}
          onChange={handleChange}
          
@@ -99,6 +93,8 @@ return (
             <br></br>
             
         <StateChart statename = {localStorage.getItem("State")}></StateChart>
+        <Linechart statename = {localStorage.getItem("State")} ></Linechart>
+
         </Tween>
            </React.Fragment>}
            </Tween>

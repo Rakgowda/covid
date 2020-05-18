@@ -17,9 +17,6 @@ const getRandomInt = () => {
 export default function Linechart(params){
   const covidDeathTrackingstate = useSelector(state=>state.CovidDeathreducer);
     const covidDeathTrackingDispatch = useDispatch();
-    useEffect(()=>{
-      covidDeathTrackingDispatch(fetchCovidDeaths());
-    },[])
     
   const covidStaTrackingstate = useSelector(state=>state.globalreducer)
   const covidSateTrackingDispatch = useDispatch();
@@ -27,9 +24,10 @@ export default function Linechart(params){
   
   useEffect(() => {
     covidSateTrackingDispatch(fetchglobalCovid());
-
+    covidDeathTrackingDispatch(fetchCovidDeaths());
    
 }, [])
+
 
     const color = ["#dd2c00",
     "#ff5722","#ff1e56",
@@ -101,12 +99,13 @@ const data = {
 
         })
       }
-
+      
     return (
   
         <div style={{marginBottom:10}}>
               {covidDeathTrackingstate.Deathdata.data !==undefined?(
                <React.Fragment>
+                 
                   <h4 className="text-center" style={{color:"#758184"}}>Last 5 days chart</h4>
                   <Stateinfochart stateRealName={params.statename} barchart={covidDeathTrackingstate}></Stateinfochart>
                  

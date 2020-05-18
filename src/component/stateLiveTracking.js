@@ -3,7 +3,6 @@ import {useSelector,useDispatch} from "react-redux"
 
 import fetchCovidDeaths from "../redux/coviddeathtracking/covidDeathAction"
 import Tracking from './TrackingLive'
-import Linechart from "./linechart"
 import { Tween, Timeline } from 'react-gsap';
 
 
@@ -41,7 +40,7 @@ function StateChart(params){
     <Tracking key={state.deaths} cardColor={"#FE4F4F"} cardTitle={"Death"} data={state.deaths} increased={state.deltadeaths}> </Tracking>
     <Tracking key={state.recovered} cardColor={"#2DBF56"} cardTitle={"Recover"} data={state.recovered} increased={state.deltarecovered}> </Tracking>
    
- 
+   
     </React.Fragment>
 
    
@@ -68,8 +67,7 @@ function StateChart(params){
         </div>
         </Tween>
 
-     
-        <Linechart statename = {params.statename} ></Linechart>
+       
    </React.Fragment>
         
     )

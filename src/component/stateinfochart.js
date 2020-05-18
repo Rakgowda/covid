@@ -24,6 +24,8 @@ export default function Stateinfochart(params){
   const svgRef = useRef();
 
   const classes = useStyles();
+  d3.selectAll("rect").remove();
+  d3.selectAll("text").remove();
   const [caseType, setCaseType] = React.useState('confirmed');
  
   const colorData={confirmed:"#FF8D4E",active:"#0779e4",deaths:"#FE4F4F",recovered:"#2DBF56"}
@@ -168,11 +170,7 @@ export default function Stateinfochart(params){
       // xAxisGroup.call(xAxis)
       // yAxisGroup.call(yAxis)
   
-    
-  
-  
-      
-  
+ 
   
     })
   

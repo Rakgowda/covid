@@ -13,9 +13,12 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     '& > *': {
       margin: theme.spacing(1),
-      "text-transform": "none"
+      
     },
   },
+  button:{
+    "text-transform": "none"
+  }
 }));
 
 
@@ -194,10 +197,10 @@ export default function Stateinfochart(params){
       </svg>
       <div className={classes.root}>
       <ButtonGroup size="small" aria-label="small outlined button group">
-        <Button onClick={()=>handleChange("confirmed")}>Confirm</Button>
-        <Button onClick={()=>handleChange("active")}>Active</Button>
-        <Button onClick={()=>handleChange("deaths")}>Death</Button>
-        <Button onClick={()=>handleChange("recovered")}>Recover</Button>
+        <Button className={classes.button} onClick={()=>handleChange("confirmed")}>Confirm</Button>
+        <Button className={classes.button} onClick={()=>handleChange("active")}>Active</Button>
+        <Button className={classes.button} onClick={()=>handleChange("deaths")}>Death</Button>
+        <Button className={classes.button} onClick={()=>handleChange("recovered")}>Recover</Button>
 
       </ButtonGroup>
     </div>

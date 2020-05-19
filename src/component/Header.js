@@ -42,22 +42,23 @@ function Header(params) {
     const classes = useStyles();
 
     const covidTrackingstate = useSelector(state=>state.reducer)
-    const covidDeathTrackingstate = useSelector(state=>state.CovidDeathreducer)
-    const covidecoveredTrackingstate = useSelector(state=>state.CovidRecoveredreducer)
+    // const covidDeathTrackingstate = useSelector(state=>state.CovidDeathreducer)
+    // const covidecoveredTrackingstate = useSelector(state=>state.CovidRecoveredreducer)
 
     
     
     const covidTrackingDispatch = useDispatch();
-    const covidDeathTrackingDispatch = useDispatch();
-    const covidRecoveredTrackingDispatch = useDispatch();
-
+//     const covidDeathTrackingDispatch = useDispatch();
+//     const covidRecoveredTrackingDispatch = useDispatch();
+// covidDeathTrackingDispatch
 
 
 
 
     useEffect(() => {
         covidTrackingDispatch(fetchCovid());
-        covidDeathTrackingDispatch(fetchCovidDeaths());
+        // covidDeathTrackingDispatch(fetchCovidDeaths());
+        
     }, [])
     return(
             <React.Fragment>

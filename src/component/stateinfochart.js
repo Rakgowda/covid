@@ -2,20 +2,19 @@ import React, {useEffect, useRef, useState} from 'react';
 import {useSelector,useDispatch} from "react-redux"
 import moment from 'moment'
 import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 import * as d3 from 'd3';
 const useStyles = makeStyles((theme) => ({
-  button: {
-    display: 'block',
-    marginTop: theme.spacing(2),
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    '& > *': {
+      margin: theme.spacing(1),
+      "text-transform": "none"
+    },
   },
 }));
 
@@ -30,11 +29,14 @@ export default function Stateinfochart(params){
  
   const colorData={confirmed:"#FF8D4E",active:"#0779e4",deaths:"#FE4F4F",recovered:"#2DBF56"}
  
-  const handleChange = (event) => {
-    d3.selectAll("rect").remove();
-    d3.selectAll("text").remove();
-
-    setCaseType(event.target.value);
+  function handleChange(e){
+    if(caseType!==e)
+    {
+      d3.selectAll("rect").remove();
+      d3.selectAll("text").remove();
+      setCaseType(e);
+    }
+    
   };
 
   
@@ -178,24 +180,8 @@ export default function Stateinfochart(params){
 
     return (
         <div >
-<FormControl className={classes.formControl} style={{position:"absolute",zIndex:1,minWidth:10,marginLeft:window.innerWidth>700?"30%":".5%",transform:window.innerWidth>700?"translateX(-50%)":""}}>
-        <InputLabel id="demo-controlled-open-select-label">Select Case</InputLabel>
-        <Select
-          labelId="demo-controlled-open-select-label"
-          id="demo-controlled-open-select"
-         
-          value={caseType}
-          onChange={handleChange}
-          
-        >
-          
-          <MenuItem value={"confirmed"}>Confirm</MenuItem>
-          <MenuItem value={"active"}>Active</MenuItem>
-          <MenuItem value={"deaths"}>Death</MenuItem>
-          <MenuItem value={"recovered"}>Recover</MenuItem>
-        </Select>
-      </FormControl>
-      <svg style={{marginLeft:"50%",transform:"translateX(-50%)"}}
+
+      <svg style={{display: "block",margin:"auto"}}
         ref={svgRef}
         width="300"
         height="250"
@@ -206,6 +192,15 @@ export default function Stateinfochart(params){
          
         
       </svg>
+      <div className={classes.root}>
+      <ButtonGroup size="small" aria-label="small outlined button group">
+        <Button onClick={()=>handleChange("confirmed")}>Confirm</Button>
+        <Button onClick={()=>handleChange("active")}>Active</Button>
+        <Button onClick={()=>handleChange("deaths")}>Death</Button>
+        <Button onClick={()=>handleChange("recovered")}>Recover</Button>
+
+      </ButtonGroup>
+    </div>
     </div>
     )
 }

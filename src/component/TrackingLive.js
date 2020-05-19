@@ -34,7 +34,7 @@ const useStyles = makeStyles({
     
   },
   subtitlt:{
-      fontSize:18,
+      fontSize:15,
       letterSpacing:"0.1em",
       fontWeight:"bold",
       textAlign:"center",

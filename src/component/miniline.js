@@ -120,7 +120,7 @@ path.attr("stroke-dasharray", totalLength + " " + totalLength)
   
   <svg id="#line" style={{marginTop:5}}
           ref={miniLine}
-          width="90"
+          width="80"
           height="60"
           preserveAspectRatio="xMidYMid meet"
         >

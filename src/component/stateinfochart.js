@@ -106,8 +106,7 @@ export default function Stateinfochart(params){
       
       // this for band width for x axis
       const x = d3.scaleBand().domain(data1.map((d,i)=>i)).range([0,graphWidth]).paddingInner(.2).paddingOuter(.2)
-      const xx = d3.scaleBand().domain(data1.map((d,i)=>i)).range([0,graphWidth]).paddingInner(.2).paddingOuter(.2)
-                         
+                        
   const t = d3.transition().duration(500)
   
   const w = x.bandwidth();
@@ -128,6 +127,7 @@ export default function Stateinfochart(params){
   txt.enter().append("text")
   .attr("x",(d,i)=>x(i)+(w/2))
   .attr("y",graphHeight+10)
+ 
   .style("fill", colorData[caseType])
   .attr("font-size", ".6em")
   // .attr("transform",`translate(${(-x.bandwidth)}, ${0})`)
@@ -183,7 +183,7 @@ export default function Stateinfochart(params){
     return (
         <div >
 
-      <svg style={{display: "block",margin:"auto"}}
+<svg style={{display: "block",margin:"auto"}}
         ref={svgRef}
         width="300"
         height="250"

@@ -57,7 +57,7 @@ function Header(params) {
 
     useEffect(() => {
         covidTrackingDispatch(fetchCovid());
-        // covidDeathTrackingDispatch(fetchCovidDeaths());
+        // covidDeathTrackingDispatch(fetchCovidDeaths());<MiniLIne></MiniLIne>
         
     }, [])
     return(
@@ -81,7 +81,6 @@ function Header(params) {
         </p>
         </Tween>
         
-
 <StateList></StateList>
 
 
@@ -94,10 +93,10 @@ function Header(params) {
             <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={4}>
                  <div className={classes.cardItems} >
 
-                 <Tracking key="1" cardColor={"#FF8D4E"} cardTitle={"Total"} data={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].confirmed:"..."} increased={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].deltaconfirmed:"..."} />
-                 <Tracking key="2" cardColor={"#0779e4"} cardTitle={"Active"} data={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].active:"..."} increased={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].deltaconfirmed-covidTrackingstate.data.statewise[0].deltadeaths-covidTrackingstate.data.statewise[0].deltarecovered:"..."}/>
-                 <Tracking key="2" cardColor={"#FE4F4F"} cardTitle={"Death"} data={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].deaths:"..."} increased={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].deltadeaths:"..."}/>
-                 <Tracking key="3" cardColor={"#2DBF56"} cardTitle="Recover" data={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].recovered:"..."} increased={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].deltarecovered:"..."} />
+                 <Tracking key="1" cardColor={"#FF8D4E"} cardTitle={"Total"} linedata={covidTrackingstate.data.cases_time_series?covidTrackingstate.data.cases_time_series.map(d=>d.totalconfirmed):""} data={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].confirmed:"..."} increased={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].deltaconfirmed:"..."} />
+                 <Tracking key="2" cardColor={"#0779e4"} cardTitle={"Active"} linedata={covidTrackingstate.data.cases_time_series?covidTrackingstate.data.cases_time_series.map(d=>d.totalconfirmed-d.totaldeceased-d.totalrecovered):""} data={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].active:"..."} increased={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].deltaconfirmed-covidTrackingstate.data.statewise[0].deltadeaths-covidTrackingstate.data.statewise[0].deltarecovered:"..."}/>
+                 <Tracking key="2" cardColor={"#FE4F4F"} cardTitle={"Death"} linedata={covidTrackingstate.data.cases_time_series?covidTrackingstate.data.cases_time_series.map(d=>d.totaldeceased):""} data={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].deaths:"..."} increased={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].deltadeaths:"..."}/>
+                 <Tracking key="3" cardColor={"#2DBF56"} cardTitle="Recover" linedata={covidTrackingstate.data.cases_time_series?covidTrackingstate.data.cases_time_series.map(d=>d.totalrecovered):""} data={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].recovered:"..."} increased={covidTrackingstate.data.statewise?covidTrackingstate.data.statewise[0].deltarecovered:"..."} />
                  </div>
                  
                  </Tween>

@@ -14,7 +14,9 @@ const getRandomInt = () => {
   return parseInt(Math.random() * 100);
 };  
 
+
 export default function Linechart(params){
+  
   const covidDeathTrackingstate = useSelector(state=>state.CovidDeathreducer);
     const covidDeathTrackingDispatch = useDispatch();
     
@@ -25,9 +27,7 @@ export default function Linechart(params){
   useEffect(() => {
     covidSateTrackingDispatch(fetchglobalCovid());
     covidDeathTrackingDispatch(fetchCovidDeaths());
-   
 }, [])
-
 
     const color = ["#dd2c00",
     "#ff5722","#ff1e56",
@@ -58,19 +58,7 @@ let increcon = {}
 let col = []
 
 let getHeatMap = []
-const dyheight = window.innerWidth>1000?100:200
 
-const data = {
-	labels: [],
-	datasets: [{
-		data: [],
-		backgroundColor: [
-		
-		],
-		hoverBackgroundColor: [
-		]
-  }]
-};
 
 
    
@@ -90,13 +78,6 @@ const data = {
             
             getHeatMap=[...getHeatMap,{id:keyname,District:keyname, value: dis.confirmed,color:color[index]}]
 
-            
-            
-                    // data.labels = [...data.labels,keyname];
-                    // data.datasets[0].data = [...data.datasets[0].data,dis.confirmed]
-                    // data.datasets[0].backgroundColor=[...data.datasets[0].backgroundColor,color[index]]
-                    // data.datasets[0].hoverBackgroundColor=[...data.datasets[0].hoverBackgroundColor,color[index]]
-
         })
       }
       
@@ -109,6 +90,7 @@ const data = {
 
                   <h4 className="text-center" style={{color:"#758184"}}>Last 5 days chart</h4>
                   <Stateinfochart stateRealName={params.statename} barchart={covidDeathTrackingstate}></Stateinfochart>
+        
         </Tween>
                  
                </React.Fragment>

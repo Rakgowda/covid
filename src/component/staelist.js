@@ -31,6 +31,7 @@ function StateList(){
     const [age, setAge] = React.useState('');
     
   
+
   
     useEffect(() => {
 
@@ -56,6 +57,8 @@ function StateList(){
        setStateFlag(false)
 setAge("")
      }
+
+    
 return (
     <div>
 <Tween ease="Back.easeIn"  from={{opacity:0,y: '-20px'}} to={{opacity:1,y: '0px'}} duration={2.5}>

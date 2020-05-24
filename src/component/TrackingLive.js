@@ -9,13 +9,15 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import Badge from '@material-ui/core/Badge';
 import {NumbFormate} from "./Formate"
 import CountUp from 'react-countup';
+import MiniLIne from "../component/miniline"
+
 const useStyles = makeStyles({
   card: {
     width: 100,
     marginTop:50,
     color:"white",
     margin: 10,
-    height:100,
+    height:150,
     marginTop:-10,
     boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",
     borderRadius:5,
@@ -55,8 +57,6 @@ const useStyles = makeStyles({
 
 function Tracking(params) {
     const classes = useStyles();
-
-    
     const cardcolor =  {background:params.cardColor,borderColor:params.cardColor};
 
     return (
@@ -75,7 +75,7 @@ function Tracking(params) {
     <div style={{background:"white"}}>
     <Typography variant="body2" className={classes.title}>{NumbFormate(params.cardTitle)}</Typography>
     </div>
-
+      {params.linedata?<MiniLIne linedata={params.linedata}></MiniLIne>:""}
         </CardContent>
       </Card>
     );
